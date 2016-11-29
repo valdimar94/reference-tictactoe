@@ -11,9 +11,9 @@ services:
       dockerfile: 'Dockerfile'
     ports:
       - '3000:3000'
-    links:
-      - 'redis'
-  redis:
+    depends_on:
+      - 'postgres'
+  postgres:
     image: redis
     ports:
       - "5400:5432"

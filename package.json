@@ -16,6 +16,7 @@
     "jade": "^1.7.0",
     "javascript-brunch": ">=1.7.1",
     "jshint-brunch": "^1.7.0",
+    "lodash": "^4.17.2",
     "parallelshell": "^2.0.0",
     "pg": "^6.1.0",
     "socket.io": "^1.5.1"
@@ -37,7 +38,7 @@
   "scripts": {
     "startclient": "cd ./client && npm run start",
     "buildclient": "cd ./client && npm run build",
-    "clean": "[ -d ./build ] && rm -r ./build",
+    "clean": "if [ -d ./build ]; then rm -r ./build; fi",
     "start": "export NODE_PATH=. && npm run migratedb && nodemon run.js",
     "createbuild": "[ -d build ] || mkdir build ",
     "build": "export NODE_PATH=. && npm run clean && npm run createbuild && npm run buildclient && mv client/build build/static && cp -R server build/server && mkdir -p build/client/src && cp -r client/src/common build/client/src && cp run.js build",

@@ -1,5 +1,5 @@
 {
-  "name": "an-outlandish-mean-app",
+  "name": "references-tictactoe",
   "version": "1.0.0",
   "description": "Base for a simple nodejs server",
   "private": true,

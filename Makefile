@@ -22,8 +22,8 @@ run:
 docker-test:
 	#add '--net host' if you want to connect to redis container runnin in another container on host or use docker compose with the ' command: 'npm test' '
 	docker run -it ${IMAGE_TAG} npm test
-redis:
+db:
 	#-v flag for starting with persistent storage
-	docker run -d -p "6379:6379" -v "${PWD}/redis:/data redis"
+	docker run -p 5432:5432 --name pg2 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 compose:
 	docker-compose up -d --build

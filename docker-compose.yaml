@@ -5,18 +5,15 @@ services:
     environment:
       - PGHOST=postgres
       - PGPORT=5432
-      - PORT=8080
-    build:
-      context: '.'
-      dockerfile: 'Dockerfile'
+      - PORT=3000
     ports:
       - '3000:3000'
       - '8080:8080'
     depends_on:
-      - 'postgres'
+      - postgres
   postgres:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: mysecretpassword
+      - 'POSTGRES_PASSWORD=mysecretpassword'
     ports:
       - "5400:5432"

@@ -13,7 +13,7 @@ export GITHUB_URL=$(echo $GIT_URL | rev | cut -c 5- | rev)
 
 
 echo Building app
-npm build
+npm run build
 
 rc=$?
 if [[ $rc != 0 ]] ; then
@@ -39,13 +39,13 @@ cat > ./dist/public/version.html << _EOF_
 </body>
 _EOF_
 
-
+#cp ./start.sh ./build/
 cp ./Dockerfile ./build/
-cp ./package,json ./build/
+cp ./package.json ./build/
 cd build
 echo Building docker image
 
-docker build -t valdimar94/references-tictactoe:$GIT_COMMIT .
+docker build -t valdimar94/references-tictactoe .
 
 rc=$?
 if [[ $rc != 0 ]] ; then
@@ -53,7 +53,7 @@ if [[ $rc != 0 ]] ; then
     exit $rc
 fi
 
-docker push valdimar94/references-tictactoe:$GIT_COMMIT
+docker push valdimar94/references-tictactoe
 rc=$?
 if [[ $rc != 0 ]] ; then
     echo "Docker push failed " $rc

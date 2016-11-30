@@ -1,12 +1,11 @@
 FROM node
 WORKDIR /code
-
+ENV NODE_PATH=.
 COPY run.js .
 COPY ./build/ .
 COPY package.json .
 #ENV NODE_PATH=/opt/lib/node_modules
-ENV NODE_PATH=.
-RUN npm install
+RUN npm install --silent
 
 EXPOSE 3000
 

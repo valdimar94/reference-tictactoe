@@ -41,8 +41,8 @@ _EOF_
 
 
 cp ./Dockerfile ./build/
-
-cd dist
+cp ./package,json ./build/
+cd build
 echo Building docker image
 
 docker build -t valdimar94/references-tictactoe:$GIT_COMMIT .

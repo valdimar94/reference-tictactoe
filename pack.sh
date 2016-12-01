@@ -39,13 +39,13 @@ cat > ./dist/public/version.html << _EOF_
 </body>
 _EOF_
 
-#cp ./start.sh ./build/
+cp ./start.sh ./build/
 cp ./Dockerfile ./build/
 cp ./package.json ./build/
 cd build
 echo Building docker image
 
-docker build -t valdimar94/references-tictactoe .
+sudo docker build -t valdimar94/references-tictactoe .
 
 rc=$?
 if [[ $rc != 0 ]] ; then
@@ -53,7 +53,7 @@ if [[ $rc != 0 ]] ; then
     exit $rc
 fi
 
-docker push valdimar94/references-tictactoe
+sudo docker push valdimar94/references-tictactoe
 rc=$?
 if [[ $rc != 0 ]] ; then
     echo "Docker push failed " $rc

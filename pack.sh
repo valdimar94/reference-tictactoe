@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo Cleaning...
-rm -rf ./dist
+rm -rf ./build
 
 if [ -z "$GIT_COMMIT" ]; then
   export GIT_COMMIT=$(git rev-parse HEAD)
@@ -39,6 +39,7 @@ cat > ./dist/public/version.html << _EOF_
 </body>
 _EOF_
 
+# files added to the build dir that are essential
 cp ./start.sh ./build/
 cp ./Dockerfile ./build/
 cp ./package.json ./build/

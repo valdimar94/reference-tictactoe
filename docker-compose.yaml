@@ -4,7 +4,7 @@ services:
     image: 'valdimar94/references-tictactoe'
     environment:
       - PGHOST=postgres
-      - PGPORT=5400
+      - PGPORT=5432
       - PORT=3000
     ports:
       - '3000:3000'
@@ -17,4 +17,4 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=mysecretpassword
     ports:
-      - "5400:5432"
+      - "5432:5432"

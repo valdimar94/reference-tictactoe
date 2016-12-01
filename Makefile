@@ -24,6 +24,6 @@ docker-test:
 	docker run -it ${IMAGE_TAG} npm test
 postgres:
 	#-v flag for starting with persistent storage
-	docker run -p 5400:5432 --name pg2 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+	docker run -p 5432:5432 --name pg2 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 compose:
 	docker-compose up -d --build

@@ -1,5 +1,5 @@
 FROM node
-WORKDIR /code
+WORKDIR .
 ENV NODE_PATH .
 COPY . .
 RUN npm install --silent

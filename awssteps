@@ -1,0 +1,36 @@
+After setting up AWS ECS and AWS command line interface:
+Log in to AWS, here you must have AWS credentials awailable on the AWS account
+The credentials are downloaded to the machine and need to be stored.
+To log in, enter:
+aws configure
+Here enter credentials.
+
+For the next step, an EC2 instance needs to be launched from the
+AWS console. The top option is picked and then press Review and Launch.
+Entering the instances window, here all instances can be seen. Notice
+the Public IP address in the description, save that.
+
+Now a connection needs to be established to the instance running
+on the AWS server.
+In the terminal, locate the key pair downloaded before.
+run:
+chmod 400 enter-the-ec2-key-name-here
+ssh -i my-ec2-key-pair.pem ec2-user@<EC2-INSTANCE-PUBLIC-IP-ADDRESS>
+
+substituting the names and ip address for the correct ones.
+Now, Amazon Linux AMI should be up and running on this machine.
+
+run:
+[ec2-user]$ sudo yum update -y
+[ec2-user]$ sudo yum install -y docker
+[ec2-user]$ sudo service docker start
+
+This gets Docker up and running on the server.
+
+run:
+[ec2-user]$ sudo usermod -a -G docker ec2-user
+[ec2-user]$ exit
+
+> ssh -i my-ec2-key-pair.pem ec2-user@<EC2-INSTANCE-PUBLIC-IP-ADDRESS>
+
+This means that sudo is not needed for most commands.

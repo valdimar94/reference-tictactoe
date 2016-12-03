@@ -7,7 +7,10 @@ aws configure
 Here enter credentials.
 
 For the next step, an EC2 instance needs to be launched from the
-AWS console. The top option is picked and then press Review and Launch.
+AWS console. The top option is picked and go through the progress by
+picking the default options except when asked for security options.
+SSH is chosen by default but a new one needs to be added, with a
+http protocol. Finish the instance creator and launch the instance.
 Entering the instances window, here all instances can be seen. Notice
 the Public IP address in the description, save that.
 
@@ -35,3 +38,38 @@ run:
 > ssh -i my-ec2-key-pair.pem ec2-user@<EC2-INSTANCE-PUBLIC-IP-ADDRESS>
 
 This means that sudo is not needed for most commands.
+
+Now docker-compose needs to be installed on the server to be able to
+run the image.
+run:
+sudo curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+Next, to get the repo from github git needs to be installed.
+run:
+sudo yum install git-all
+
+Now clone the repo:
+git clone https://github.com/valdimar94/reference-tictactoe.git
+
+Going back to the local machine, the ports in the Dockerfile and
+docker-compose need to be changed from 3000 to 80.
+After that the pack.sh script needs to be run to create a new image for
+the docker-compose on the server. After changing the ports and
+running start.sh, push to master.
+
+Moving back to the server.
+Go to the project directory and pull the changes.
+Now running docker-compose up should start the server and
+going to the IP address http://54.171.152.220/ should display the app.
+
+** NOTE **
+If there is trouble running docker-compose up with it trying to connect
+to port 80 and failing, there is a possibility of an older image
+is running where the ports have not been changed to 80.
+Running the
+./rmContainers.sh
+and
+./rmImages.sh
+on the server removes the old containers and images and if ./pack.sh
+has been run on the local machine everything should work fine.

@@ -1,4 +1,5 @@
-After setting up AWS ECS and AWS command line interface:
+After setting up AWS ECS and AWS command line interface and making sure
+both python and pip are installed on the system:
 Log in to AWS, here you must have AWS credentials awailable on the AWS account
 The credentials are downloaded to the machine and need to be stored.
 To log in, enter:

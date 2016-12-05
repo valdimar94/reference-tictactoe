@@ -25,23 +25,22 @@ substituting the names and ip address for the correct ones.
 Now, Amazon Linux AMI should be up and running on this machine.
 
 run:
-[ec2-user]$ sudo yum update -y
-[ec2-user]$ sudo yum install -y docker
-[ec2-user]$ sudo service docker start
+sudo yum update -y
+sudo yum install -y docker
+sudo service docker start
 
 This gets Docker up and running on the server.
 
 run:
-[ec2-user]$ sudo usermod -a -G docker ec2-user
-[ec2-user]$ exit
+sudo usermod -a -G docker ec2-user
+exit
 
 > ssh -i my-ec2-key-pair.pem ec2-user@<EC2-INSTANCE-PUBLIC-IP-ADDRESS>
 
 This means that sudo is not needed for most commands.
 
 Now docker-compose needs to be installed on the server to be able to
-run the image.
-run:
+run the image, so run:
 sudo curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 

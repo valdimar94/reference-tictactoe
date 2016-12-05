@@ -44,22 +44,15 @@ run the image, so run:
 sudo curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-Next, to get the repo from github git needs to be installed.
-run:
-sudo yum install git-all
-
-Now clone the repo:
-git clone https://github.com/valdimar94/reference-tictactoe.git
-
 Going back to the local machine, the ports in the Dockerfile and
 docker-compose need to be changed from 3000 to 80.
 After that the pack.sh script needs to be run to create a new image for
-the docker-compose on the server. After changing the ports and
-running start.sh, push to master.
+the docker-compose on the server.
 
-Moving back to the server.
-Go to the project directory and pull the changes.
-Now running docker-compose up should start the server and
+This puts the docker-compose.yaml file to the server so an image can be run:
+scp -o StrictHostKeyChecking=no -i "../admin-key-pair-ireland.pem" ./docker-compose.yaml ec2-user@54.171.205.207:~/docker-compose.yaml
+
+Back to the server, now running docker-compose up should start the server and
 going to the IP address http://54.171.152.220/ should display the app.
 
 ** NOTE **

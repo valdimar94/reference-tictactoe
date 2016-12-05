@@ -1,18 +1,18 @@
 version: '2'
 services:
   server:
-    image: 'valdimar94/references-tictactoe'
+    image: 'valdimar94/references-tictactoe' #the image containing the app
     environment:
-      - PGHOST=postgres
-      - PGPORT=5432
-      - PORT=80
+      - PGHOST=postgres # the database the server will be running
+      - PGPORT=5432 # the local postgres port created
+      - PORT=80 #aws instance port, can also be used locally but an image running on the aws instance can only be accessed online by the ip address if the port is 80 as this is the port aws uses
     ports:
       - '80:80'
       - '8080:8080'
     depends_on:
       - postgres
   postgres:
-    image: postgres
+    image: postgres #the image needed for docker compose with the valdimar94/reference-tictactoe
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=mysecretpassword

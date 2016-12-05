@@ -2,6 +2,7 @@
   "name": "references-tictactoe",
   "version": "1.0.0",
   "description": "Base for a simple nodejs server",
+  "author": "valdimarj14",
   "private": true,
   "main": "run.js",
   "dependencies": {

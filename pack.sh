@@ -46,7 +46,7 @@ cp ./package.json ./build/
 cd build
 echo Building docker image
 
-sudo docker build -t valdimar94/references-tictactoe:$GIT_COMMIT .
+docker build -t valdimar94/references-tictactoe:$GIT_COMMIT .
 
 rc=$?
 if [[ $rc != 0 ]] ; then
@@ -54,7 +54,7 @@ if [[ $rc != 0 ]] ; then
     exit $rc
 fi
 
-sudo docker push valdimar94/references-tictactoe:$GIT_COMMIT
+docker push valdimar94/references-tictactoe:$GIT_COMMIT
 rc=$?
 if [[ $rc != 0 ]] ; then
     echo "Docker push failed " $rc

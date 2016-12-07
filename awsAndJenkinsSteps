@@ -65,3 +65,47 @@ and
 ./rmImages.sh
 on the server removes the old containers and images and if ./pack.sh
 has been run on the local machine everything should work fine.
+
+** Jenkins **
+
+After login in to Advania server and before setting up the basics of Jenkins, these commands need to be run.
+This step will hopefully be automated later.
+
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+node -v
+npm -v
+sudo apt-get install git-all
+sudo apt-get update
+sudo apt-get install apt-transport-https ca-certificates
+sudo apt-key adv \
+               --keyserver hkp://ha.pool.sks-keyservers.net:80 \
+               --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
+sudo apt-get update
+sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+sudo apt-get install -y docker
+sudo service docker start
+sudo service jenkins restart
+
+Install jenkins using https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
+Jenkins cannot use docker without sudo, so to give him permission:
+sudo gpasswd -a ${USER} docker
+sudo service docker restart
+
+To log into docker with jenkins:
+sudo su jenkins
+docker login
+*username*
+*password*
+
+To secure copy the pem key to ubuntu server:
+scp -o ../admin-key-pair-ireland.pem ubuntu@82.221.49.149:~/admin-key-pair-ireland.pem
+
+After the first jenkins build is up and running, we need another one that will be triggered if the first build is greenlit.
+This build will ssh to the AWS machine server and run the docker-compose file.
+To get the docker-compose-and-run file to the AWS:
+scp -o StrictHostKeyChecking=no -i "../admin-key-pair-ireland.pem" scripts/docker-compose-and-run.sh ec2-user@54.171.205.207:~/docker-compose-and-run.sh
+
+And the bash command needed to run the file, this needs to be run every time the second Jenkins build is triggered:
+ssh -o StrictHostKeyChecking=no -i "../admin-key-pair-ireland.pem" -f ec2-user@54.171.205.207 "sleep 2 && ./docker-compose-and-run.sh"

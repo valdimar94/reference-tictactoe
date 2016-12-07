@@ -1,0 +1,27 @@
+#!/bin/bash
+
+SECURITY_GROUP_ID=$(aws ec2 create-security-group --group-name awsSecurityGroup --description "For public http accesses") #creating a new security group for our instance
+SECURITY_GROUP_NAME=$(../admin-key-pair-ireland.pem) #the name of our key
+
+INSTANCE_ID=$(aws ec2 run-instances  --user-data file://ec2-instance-init.sh --image-id ami-9398d3e0 --security-group-ids ${SECURITY_GROUP_ID} --count 1 --instance-type t2.micro --key-name ${SECURITY_GROUP_NAME} --query 'Instances[0].InstanceId'  --output=text) #creates an instance using the SECURITY_GROUP_ID and the key
+echo ${INSTANCE_ID} > ./ec2_instance/instance-id.txt #folder created with our new instance id
+
+aws ec2 wait --region eu-west-1 instance-running --instance-ids ${INSTANCE_ID} #To make sure the instance is running before doing more
+
+status='unknown' #halts script execution until instance is available, this along with the next while loop is needed
+while [ ! "${status}" == "ok" ]
+do
+   echo Checking status of host, currently ${status}
+   status=$(ssh -i "./ec2_instance/${SECURITY_GROUP_NAME}"  -o StrictHostKeyChecking=no -o BatchMode=yes -o ConnectTimeout=5 ec2-user@${INSTANCE_PUBLIC_NAME} echo ok 2>&1)
+   sleep 2
+done
+
+fileExists='no' #here we check whether or not the ec2-init-done.markerfile was created, if it was we can proceed to the next step
+while ["${fileExists}" == "no"]
+do
+   fileExists=$(ssh  'if [ -f ec2-init-done.markerfile ]; then echo yes; else echo no; fi')
+done
+
+# puts the docker-compose and docker compose and run file on the server
+scp -o StrictHostKeyChecking=no -i "./ec2_instance/${SECURITY_GROUP_NAME}" ./docker-compose.yaml ec2-user@${INSTANCE_PUBLIC_NAME}:~/docker-compose.yaml
+scp -o StrictHostKeyChecking=no -i "./ec2_instance/${SECURITY_GROUP_NAME}" ./scripts/docker-compose-and-run.sh ec2-user@${INSTANCE_PUBLIC_NAME}:~/docker-compose-and-run.sh

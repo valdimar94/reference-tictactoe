@@ -2,6 +2,7 @@
 
 SECURITY_GROUP_ID=$(aws ec2 create-security-group --group-name awsSecurityGroup --description "For public http accesses") #creating a new security group for our instance
 SECURITY_GROUP_NAME=$(../admin-key-pair-ireland.pem) #the name of our key
+echo ${SECURITY_GROUP_NAME} > ./ec2_instance/admin-key-pair-ireland.pem
 
 INSTANCE_ID=$(aws ec2 run-instances  --user-data file://ec2-instance-init.sh --image-id ami-9398d3e0 --security-group-ids ${SECURITY_GROUP_ID} --count 1 --instance-type t2.micro --key-name ${SECURITY_GROUP_NAME} --query 'Instances[0].InstanceId'  --output=text) #creates an instance using the SECURITY_GROUP_ID and the key
 echo ${INSTANCE_ID} > ./ec2_instance/instance-id.txt #folder created with our new instance id

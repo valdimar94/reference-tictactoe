@@ -40,7 +40,7 @@ cat > ./dist/public/version.html << _EOF_
 _EOF_
 
 # files added to the build dir that are essential
-cp ./start.sh ./build/
+cp scripts/start.sh ./build/
 cp ./Dockerfile ./build/
 cp ./package.json ./build/
 cd build

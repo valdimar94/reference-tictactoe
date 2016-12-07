@@ -109,3 +109,11 @@ scp -o StrictHostKeyChecking=no -i "../admin-key-pair-ireland.pem" scripts/docke
 
 And the bash command needed to run the file, this needs to be run every time the second Jenkins build is triggered:
 ssh -o StrictHostKeyChecking=no -i "../admin-key-pair-ireland.pem" -f ec2-user@54.171.205.207 "sleep 2 && ./docker-compose-and-run.sh"
+
+
+** Webhook **
+
+Jenkins comes with the Github Plugin, which allows us to use a webhook to automatically run build on Jenkins when something is pushed to the github repo.
+Go to the github repo for the project, and to services, then integrations & services.
+Search for jenkins in the drop-down menu and select the github one. Add the url: http://82.221.49.149:8080/github-webhook/
+and test it by going to the webhook and pressing test. This should trigger a fake push and a build should start on jenkins.

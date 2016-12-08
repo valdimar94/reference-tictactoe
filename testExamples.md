@@ -1,12 +1,5 @@
 ## Test Examples for tictactoe
 
-# Board placement explanation
-The board for the examples below use this explanation for the board:
-  __0 1 2__
-0|__
-1|
-2|
-
 # Example 1 - create game
 
 * **Given** that a game has not been created

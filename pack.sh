@@ -11,7 +11,7 @@ fi
 # Remove .git from url in order to get https link to repo (assumes https url for GitHub)
 export GITHUB_URL=$(echo $GIT_URL | rev | cut -c 5- | rev)
 
-
+# run the npm build, this takes care of dependancies
 echo Building app
 npm run build
 
@@ -46,6 +46,7 @@ cp ./package.json ./build/
 cd build
 echo Building docker image
 
+# builds the docker image
 docker build -t valdimar94/references-tictactoe:$GIT_COMMIT .
 
 rc=$?
@@ -54,6 +55,7 @@ if [[ $rc != 0 ]] ; then
     exit $rc
 fi
 
+# Pushes the docker image to my docker hub
 docker push valdimar94/references-tictactoe:$GIT_COMMIT
 rc=$?
 if [[ $rc != 0 ]] ; then

@@ -17,7 +17,7 @@ module.exports = function (injected) {
         }
 
         function gameFull() {
-          return isFull;
+            return isFull;
         }
 
         processEvents(history);

@@ -46,10 +46,18 @@ module.exports = function(injected){
 
                         // Check here for conditions which prevent command from altering state
 
-                        gameState.processEvents(events);
+                        //gameState.processEvents(events);
 
+                        eventHandler([{
+                          gameId: cmd.gameId,
+                          type: "MovePlaced",
+                          user: cmd.user,
+                          name: cmd.name,
+                          timeStamp: cmd.timeStamp,
+                          placeAt: cmd.placeAt,
+                          side: cmd.side
+                        }]);
                         // Check here for conditions which may warrant additional events to be emitted.
-                        eventHandler(events);
                     }
                 };
 
@@ -61,4 +69,3 @@ module.exports = function(injected){
         }
     }
 };
-

@@ -7,25 +7,6 @@ var tictactoe = require('./tictactoe-handler')(inject({
     TictactoeState
 }));
 
-var createEvent = {
-    type: "GameCreated",
-    user: {
-        userName: "TheGuy"
-    },
-    name: "TheFirstGame",
-    timeStamp: "2014-12-02T11:29:29"
-};
-
-var joinEvent = {
-    type: "GameJoined",
-    user: {
-        userName: "Gummi"
-    },
-    name: "TheFirstGame",
-    timeStamp: "2014-12-02T11:29:29"
-};
-
-
 describe('create game command', function() {
 
 
@@ -127,6 +108,42 @@ describe('join game command', function () {
 
     it('should emit FullGameJoinAttempted event when game full', function () {
 
-        expect(true).toBe(false);
+      given = [{
+          type: "GameCreated",
+          user: {
+              userName: "TheGuy"
+          },
+          name: "TheFirstGame",
+          timeStamp: "2014-12-02T11:29:29"
+      },
+      {
+          type: "GameJoined",
+          user: {
+              userName: "Gummi"
+          },
+          name: "TheFirstGame",
+          timeStamp: "2014-12-02T11:29:29",
+          side:'O'
+      }
+      ];
+      when =
+      {
+          type: "JoinGame",
+          user: {
+              userName: "Jon"
+          },
+          name: "TheFirstGame",
+          timeStamp: "2014-12-02T11:29:50"
+      };
+      then = [
+          {
+              type: "FullGameJoinAttempted",
+              user: {
+                  userName: "Jon"
+              },
+              name: "TheFirstGame",
+              timeStamp: "2014-12-02T11:29:50"
+          }
+      ];
     });
 });

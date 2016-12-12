@@ -4,7 +4,12 @@ module.exports = function (injected) {
 
     return function (history) {
 
+        var isFull = false;
+
         function processEvent(event) {
+          if (event.type=="GameJoined"){
+              isFull = true;
+          }
         }
 
         function processEvents(history) {
@@ -12,7 +17,7 @@ module.exports = function (injected) {
         }
 
         function gameFull() {
-          return false;
+          return isFull;
         }
 
         processEvents(history);

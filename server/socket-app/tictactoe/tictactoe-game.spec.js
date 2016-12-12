@@ -91,7 +91,7 @@ describe('join game command', function () {
     });
 
 
-    it('should emit game joined event...', function () {
+    it('should emit game joined event', function () {
 
         given = [{
             type: "GameCreated",
@@ -125,10 +125,8 @@ describe('join game command', function () {
 
     });
 
-    it('should emit FullGameJoinAttempted event when game full..implement this', function () {
+    it('should emit FullGameJoinAttempted event when game full', function () {
 
         expect(true).toBe(false);
     });
 });
-
-

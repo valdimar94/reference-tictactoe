@@ -18,8 +18,10 @@ exports.up = function(db,callback) {
   db.addColumn('eventlog',
     'aggregateid',{
       type: 'string'
-    }
-  }, callback);};
+    },
+    callback
+    );
+};
 
 exports._meta = {
   "version": 1

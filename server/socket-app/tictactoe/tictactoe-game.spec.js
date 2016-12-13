@@ -39,15 +39,15 @@ describe('create game command', function() {
             timeStamp: "2014-12-02T11:29:29"
         };
         then = [
-            {
-                type: "GameCreated",
-                user: {
-                    userName: "TheGuy"
-                },
-                name: "TheFirstGame",
-                timeStamp: "2014-12-02T11:29:29",
-                side:'X'
-            }
+        {
+            type: "GameCreated",
+            user: {
+                userName: "TheGuy"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side:'X'
+        }
         ];
 
     })
@@ -74,7 +74,8 @@ describe('join game command', function () {
 
     it('should emit game joined event', function () {
 
-        given = [{
+        given = [
+        {
             type: "GameCreated",
             user: {
                 userName: "TheGuy"
@@ -93,22 +94,23 @@ describe('join game command', function () {
             timeStamp: "2014-12-02T11:29:29"
         };
         then = [
-            {
-                type: "GameJoined",
-                user: {
-                    userName: "Gummi"
-                },
-                name: "TheFirstGame",
-                timeStamp: "2014-12-02T11:29:29",
-                side:'O'
-            }
+        {
+            type: "GameJoined",
+            user: {
+                userName: "Gummi"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side:'O'
+        }
         ];
 
     });
 
     it('should emit FullGameJoinAttempted event when game full', function () {
 
-      given = [{
+      given = [
+      {
           type: "GameCreated",
           user: {
               userName: "TheGuy"
@@ -136,14 +138,14 @@ describe('join game command', function () {
           timeStamp: "2014-12-02T11:29:50"
       };
       then = [
-          {
-              type: "FullGameJoinAttempted",
-              user: {
-                  userName: "Jon"
-              },
-              name: "TheFirstGame",
-              timeStamp: "2014-12-02T11:29:50"
-          }
+      {
+          type: "FullGameJoinAttempted",
+          user: {
+              userName: "Jon"
+          },
+          name: "TheFirstGame",
+          timeStamp: "2014-12-02T11:29:50"
+      }
       ];
     });
 });

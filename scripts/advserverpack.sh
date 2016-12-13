@@ -2,6 +2,7 @@
 
 set -e
 
+sudo docker rmi $(sudo docker images -q)
 git clean -dfx
 git stash  # make sure we have a clean, original directory
 rm -rf node_modules

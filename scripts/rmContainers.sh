@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo docker stop $(sudo docker ps -a -q)
-sudo docker rm $(sudo docker ps -a -q)
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)

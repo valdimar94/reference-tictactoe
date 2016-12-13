@@ -1,7 +1,7 @@
 version: '2'
 services:
   server:
-    image: 'valdimar94/references-tictactoe' #the image containing the app
+    image: 'valdimar94/references-tictactoe:${GIT_COMMIT}' #the image containing the app
     environment:
       - PGHOST=postgres # the database the server will be running
       - PGPORT=5432 # the local postgres port created

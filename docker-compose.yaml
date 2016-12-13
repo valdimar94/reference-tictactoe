@@ -3,7 +3,7 @@ services:
   server:
     image: 'valdimar94/references-tictactoe:${GIT_COMMIT}' #the image containing the app
     environment:
-      - PGHOST=postgres # the database the server will be running
+      - NODE_ENV=production #make it the production environment
       - PGPORT=5432 # the local postgres port created
       - PORT=80 #aws instance port, can also be used locally but an image running on the aws instance can only be accessed online by the ip address if the port is 80 as this is the port aws uses
     ports:

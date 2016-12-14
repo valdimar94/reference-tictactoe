@@ -66,29 +66,7 @@ module.exports = function(injected){
                             }]);
                             return;
                         }
-                        if(gameState.horizontalWin(cmd)){
-                            eventHandler( [{
-                                gameId: cmd.gameId,
-                                type: "GameWon",
-                                user: cmd.user,
-                                name: cmd.name,
-                                timeStamp: cmd.timeStamp,
-                                side: cmd.side
-                            }]);
-                            return;
-                        }
-                        if(gameState.diagonalWin(cmd)){
-                            eventHandler( [{
-                                gameId: cmd.gameId,
-                                type: "GameWon",
-                                user: cmd.user,
-                                name: cmd.name,
-                                timeStamp: cmd.timeStamp,
-                                side: cmd.side
-                            }]);
-                            return;
-                        }
-                        if(gameState.verticalWin(cmd)){
+                        if(gameState.winConditions(cmd)){
                             eventHandler( [{
                                 gameId: cmd.gameId,
                                 type: "GameWon",

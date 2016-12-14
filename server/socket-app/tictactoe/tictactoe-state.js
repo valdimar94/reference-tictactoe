@@ -35,6 +35,10 @@ module.exports = function (injected) {
             playerTurn = 'X';
         }
 
+        function winConditions(event) {
+            return (horizontalWin(event) || diagonalWin(event) || verticalWin(event));
+        }
+
         function horizontalWin(event) {
             board[event.placeAt] = event.side;
 
@@ -97,9 +101,7 @@ module.exports = function (injected) {
             gameFull: gameFull,
             isCurrentPlayerTurn: isCurrentPlayerTurn,
             isOccupied: isOccupied,
-            horizontalWin: horizontalWin,
-            diagonalWin: diagonalWin,
-            verticalWin: verticalWin,
+            winConditions: winConditions,
             isDraw: isDraw,
             processEvents: processEvents
         }

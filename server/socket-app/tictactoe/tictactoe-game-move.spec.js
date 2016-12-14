@@ -1,13 +1,13 @@
-var should = require('should');
-var _ = require('lodash');
+var should = require("should");
+var _ = require("lodash");
 
-var TictactoeState = require('./tictactoe-state')(inject({}));
+var TictactoeState = require("./tictactoe-state")(inject({}));
 
-var tictactoe = require('./tictactoe-handler')(inject({
+var tictactoe = require("./tictactoe-handler")(inject({
     TictactoeState
 }));
 
-describe('move game command', function() {
+describe("move game command", function() {
 
   var given, when, then;
 
@@ -24,7 +24,7 @@ describe('move game command', function() {
   });
 
 
-  it('should place X at [0, 0]', function () {
+  it("should place X at [0, 0]", function () {
 
       given = [
       {
@@ -42,7 +42,7 @@ describe('move game command', function() {
           },
           name: "TheFirstGame",
           timeStamp: "2014-12-02T11:29:29",
-          side:'O'
+          side:"O"
       }
       ];
       when =
@@ -53,8 +53,8 @@ describe('move game command', function() {
           },
           name: "TheFirstGame",
           timeStamp: "2014-12-02T11:30:29",
-          placeAt: "[0, 0]",
-          side:'X'
+          placeAt: "0",
+          side:"X"
       };
       then = [
       {
@@ -64,14 +64,14 @@ describe('move game command', function() {
           },
           name: "TheFirstGame",
           timeStamp: "2014-12-02T11:30:29",
-          placeAt: "[0, 0]",
-          side:'X'
+          placeAt: "0",
+          side:"X"
       }
       ];
 
   });
 
-  it('should place O at [1, 1]', function () {
+  it("should place O at [1, 1]", function () {
 
       given = [
       {
@@ -89,7 +89,7 @@ describe('move game command', function() {
           },
           name: "TheFirstGame",
           timeStamp: "2014-12-02T11:29:29",
-          side:'O'
+          side:"O"
       },
       {
           type: "PlaceMove",
@@ -98,8 +98,8 @@ describe('move game command', function() {
           },
           name: "TheFirstGame",
           timeStamp: "2014-12-02T11:30:29",
-          placeAt: "[0, 0]",
-          side:'X'
+          placeAt: "0",
+          side:"X"
       }
       ];
       when =
@@ -110,8 +110,8 @@ describe('move game command', function() {
           },
           name: "TheFirstGame",
           timeStamp: "2014-12-02T11:31:29",
-          placeAt: "[1, 1]",
-          side:'O'
+          placeAt: "4",
+          side:"O"
       };
       then = [
       {
@@ -121,14 +121,71 @@ describe('move game command', function() {
           },
           name: "TheFirstGame",
           timeStamp: "2014-12-02T11:31:29",
-          placeAt: "[1, 1]",
-          side:'O'
+          placeAt: "4",
+          side:"O"
       }
       ];
 
   });
+
+
+    it("should give OutOfTurnMoveAttempted", function () {
+
+        given = [
+        {
+            type: "GameCreated",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29"
+        },
+        {
+            type: "GameJoined",
+            user: {
+                userName: "NotTheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side:"O"
+        },
+        {
+            type: "PlaceMove",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:30:29",
+            placeAt: "0",
+            side:"X"
+        }
+        ];
+        when =
+        {
+            type: "PlaceMove",
+            user: {
+                userName: "NotTheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:31:29",
+            placeAt: "4",
+            side:"X"
+        };
+        then = [
+        {
+            type: "OutOfTurnMoveAttempted",
+            user: {
+                userName: "NotTheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:31:29",
+            side:"X"
+        }
+        ];
+
+    });
 /*
-  it('should not place O at [0, 0]', function () {
+  it("should not place O at [0, 0]", function () {
 
       given = [
       {
@@ -146,7 +203,7 @@ describe('move game command', function() {
           },
           name: "TheFirstGame",
           timeStamp: "2014-12-02T11:29:29",
-          side:'O'
+          side:"O"
       }
       {
           type: "PlaceMove",
@@ -156,7 +213,7 @@ describe('move game command', function() {
           name: "TheFirstGame",
           timeStamp: "2014-12-02T11:30:29",
           placeAt: "[0, 0]",
-          side:'X'
+          side:"X"
       };
       ];
       when =
@@ -168,7 +225,7 @@ describe('move game command', function() {
           name: "TheFirstGame",
           timeStamp: "2014-12-02T11:31:29",
           placeAt: "[0, 0]",
-          side:'X'
+          side:"X"
       };
       then = [
       {
@@ -179,7 +236,7 @@ describe('move game command', function() {
           name: "TheFirstGame",
           timeStamp: "2014-12-02T11:31:29",
           placeAt: "[0, 0]",
-          side:'X'
+          side:"X"
       }
       ];
 

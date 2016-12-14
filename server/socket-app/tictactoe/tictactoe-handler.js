@@ -44,20 +44,26 @@ module.exports = function(injected){
                     },
                     "PlaceMove": function(cmd){
 
-                        // Check here for conditions which prevent command from altering state
-
-                        //gameState.processEvents(events);
-
+                        if(!gameState.isCurrentPlayerTurn(cmd.side)){
+                            eventHandler( [{
+                                gameId: cmd.gameId,
+                                type: "OutOfTurnMoveAttempted",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side
+                            }]);
+                            return;
+                        }
                         eventHandler([{
-                          gameId: cmd.gameId,
-                          type: "MovePlaced",
-                          user: cmd.user,
-                          name: cmd.name,
-                          timeStamp: cmd.timeStamp,
-                          placeAt: cmd.placeAt,
-                          side: cmd.side
+                            gameId: cmd.gameId,
+                            type: "MovePlaced",
+                            user: cmd.user,
+                            name: cmd.name,
+                            timeStamp: cmd.timeStamp,
+                            placeAt: cmd.placeAt,
+                            side: cmd.side
                         }]);
-                        // Check here for conditions which may warrant additional events to be emitted.
                     }
                 };
 

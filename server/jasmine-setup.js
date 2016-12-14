@@ -18,3 +18,5 @@ var junitReporter = new reporters.JUnitXmlReporter({
 });
 
 jasmine.getEnv().addReporter(junitReporter);
+
+// adding reporters so the junit test results will be created in the folder junitResults

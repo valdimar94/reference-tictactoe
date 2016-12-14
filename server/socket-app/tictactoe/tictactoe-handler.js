@@ -42,6 +42,12 @@ module.exports = function(injected){
                             side:'O'
                         }]);
                     },
+                    // For the move functions, both the move and win conditions are checked here.
+                    // This is because win conditions are technically checked before either X or
+                    // O are placed.
+                    // winConditions checks all three functions that check if the player has won
+                    // the game, horizontal, vertical and diagonally.
+                    // If none of the if statements are performed, MovePlaced is performed.
                     "PlaceMove": function(cmd){
 
                         if(!gameState.isCurrentPlayerTurn(cmd.side)){

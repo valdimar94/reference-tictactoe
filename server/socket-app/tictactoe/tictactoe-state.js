@@ -13,7 +13,7 @@ module.exports = function (injected) {
                 isFull = true;
             }
             if (event.type=="PlaceMove"){
-                board[parseInt(event.placeAt, 10)] = event.side;
+                board[event.placeAt] = event.side;
                 togglePlayer();
             }
 
@@ -34,7 +34,7 @@ module.exports = function (injected) {
             }
             playerTurn = 'X';
         }
-
+        // If any of the three win conditions are met, this function returns true
         function winConditions(event) {
             return (horizontalWin(event) || diagonalWin(event) || verticalWin(event));
         }
@@ -72,7 +72,7 @@ module.exports = function (injected) {
             }
             return false;
         }
-
+        // If any place in the board is null, it cannot be a draw
         function isDraw(event){
             board[event.placeAt] = event.side;
 
@@ -96,7 +96,7 @@ module.exports = function (injected) {
         }
 
         processEvents(history);
-//shitt
+
         return {
             gameFull: gameFull,
             isCurrentPlayerTurn: isCurrentPlayerTurn,

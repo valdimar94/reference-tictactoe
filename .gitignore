@@ -11,4 +11,4 @@ logs
 npm-debug.log*
 
 # Test result files for junit
-/junitResults
+*.xml

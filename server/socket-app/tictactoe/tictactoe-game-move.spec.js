@@ -410,4 +410,89 @@ describe("move game command", function() {
         }
         ];
     });
+
+    it("should give GameWon as player wins vertically", function () {
+
+        given = [
+        {
+            type: "GameCreated",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29"
+        },
+        {
+            type: "GameJoined",
+            user: {
+                userName: "NotTheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29",
+            side:"O"
+        },
+        {
+            type: "PlaceMove",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:30:29",
+            placeAt: "0",
+            side:"X"
+        },
+        {
+            type: "PlaceMove",
+            user: {
+                userName: "NotTheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:30:29",
+            placeAt: "1",
+            side:"O"
+        },
+        {
+            type: "PlaceMove",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:30:29",
+            placeAt: "3",
+            side:"X"
+        },
+        {
+            type: "PlaceMove",
+            user: {
+                userName: "NotTheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:30:29",
+            placeAt: "5",
+            side:"O"
+        }
+        ];
+        when =
+        {
+            type: "PlaceMove",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:31:29",
+            placeAt: "6",
+            side:"X"
+        };
+        then = [
+        {
+            type: "GameWon",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:31:29",
+            side:"X"
+        }
+        ];
+    });
 });

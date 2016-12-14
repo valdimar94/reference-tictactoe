@@ -58,6 +58,17 @@ module.exports = function (injected) {
             return false;
         }
 
+        function verticalWin(event){
+            board[event.placeAt] = event.side;
+
+            for (var i = 0; i < board.length-6; i++){
+                if (board[i] == playerTurn && board[i+3] == playerTurn && board[i+6] == playerTurn){
+                    return true;
+                }
+            }
+            return false;
+        }
+
         function gameFull() {
             return isFull;
         }
@@ -77,6 +88,7 @@ module.exports = function (injected) {
             isOccupied: isOccupied,
             horizontalWin: horizontalWin,
             diagonalWin: diagonalWin,
+            verticalWin: verticalWin,
             processEvents: processEvents
         }
     };

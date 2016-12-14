@@ -99,6 +99,15 @@ module.exports = function(injected){
                             }]);
                             return;
                         }
+                        if(gameState.isDraw(cmd)){
+                            eventHandler( [{
+                                gameId: cmd.gameId,
+                                type: "GameDraw",
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp
+                            }]);
+                            return;
+                        }
                         eventHandler([{
                             gameId: cmd.gameId,
                             type: "MovePlaced",

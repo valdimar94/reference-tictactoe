@@ -69,6 +69,17 @@ module.exports = function (injected) {
             return false;
         }
 
+        function isDraw(event){
+            board[event.placeAt] = event.side;
+
+            for (var i = 0; i < board.length; i++){
+                if (board[i] == null){
+                    return false;
+                }
+            }
+            return true;
+        }
+
         function gameFull() {
             return isFull;
         }
@@ -89,6 +100,7 @@ module.exports = function (injected) {
             horizontalWin: horizontalWin,
             diagonalWin: diagonalWin,
             verticalWin: verticalWin,
+            isDraw: isDraw,
             processEvents: processEvents
         }
     };

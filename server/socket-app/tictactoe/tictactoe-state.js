@@ -46,6 +46,18 @@ module.exports = function (injected) {
             return false;
         }
 
+        function diagonalWin(event) {
+            board[event.placeAt] = event.side;
+
+            if (board[0] == playerTurn && board[4] == playerTurn && board[8] == playerTurn){
+                return true;
+            }
+            if (board[2] == playerTurn && board[4] == playerTurn && board[6] == playerTurn){
+                return true;
+            }
+            return false;
+        }
+
         function gameFull() {
             return isFull;
         }
@@ -60,11 +72,11 @@ module.exports = function (injected) {
         processEvents(history);
 
         return {
-            togglePlayer: togglePlayer,
+            gameFull: gameFull,
             isCurrentPlayerTurn: isCurrentPlayerTurn,
             isOccupied: isOccupied,
             horizontalWin: horizontalWin,
-            gameFull: gameFull,
+            diagonalWin: diagonalWin,
             processEvents: processEvents
         }
     };

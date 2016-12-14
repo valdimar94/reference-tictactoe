@@ -96,7 +96,7 @@ module.exports = function (injected) {
         }
 
         processEvents(history);
-
+//shitt
         return {
             gameFull: gameFull,
             isCurrentPlayerTurn: isCurrentPlayerTurn,

@@ -24,7 +24,7 @@ describe("move game command", function() {
   });
 
 
-  it("should place X at [0, 0]", function () {
+    it("should place X at [0, 0]", function () {
 
       given = [
       {
@@ -71,7 +71,7 @@ describe("move game command", function() {
 
   });
 
-  it("should place O at [1, 1]", function () {
+    it("should place O at [1, 1]", function () {
 
       given = [
       {
@@ -126,7 +126,7 @@ describe("move game command", function() {
       }
       ];
 
-  });
+    });
 
 
     it("should give OutOfTurnMoveAttempted", function () {
@@ -185,7 +185,7 @@ describe("move game command", function() {
 
     });
 
-  it("should give IllegalMoveIsOccupied", function () {
+    it("should give IllegalMoveIsOccupied", function () {
 
       given = [
       {

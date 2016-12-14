@@ -9,3 +9,6 @@ todo.md
 logs
 *.log
 npm-debug.log*
+
+# Test result files for junit
+/junitResults

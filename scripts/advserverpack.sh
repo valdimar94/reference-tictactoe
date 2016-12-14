@@ -18,3 +18,4 @@ scp -o StrictHostKeyChecking=no -i "../admin-key-pair-ireland.pem" docker-compos
 scp -o StrictHostKeyChecking=no -i "../admin-key-pair-ireland.pem" build/.env ec2-user@54.171.205.207:~/.env
 
 exit 0
+#this shit

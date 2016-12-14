@@ -23,12 +23,27 @@ module.exports = function (injected) {
             _.each(history, processEvent);
         }
 
+        function isOccupied(placeAt) {
+            return board[placeAt] != null;
+        }
+
         function togglePlayer() {
             if (playerTurn == 'X'){
                 playerTurn = 'O';
                 return;
             }
             playerTurn = 'X';
+        }
+
+        function horizontalWin(event) {
+            board[event.placeAt] = event.side;
+
+            for (var i = 0; i < board.length; i+=3){
+                if (board[i] == playerTurn && board[i+1] == playerTurn && board[i+2] == playerTurn){
+                    return true;
+                }
+            }
+            return false;
         }
 
         function gameFull() {
@@ -45,7 +60,10 @@ module.exports = function (injected) {
         processEvents(history);
 
         return {
+            togglePlayer: togglePlayer,
             isCurrentPlayerTurn: isCurrentPlayerTurn,
+            isOccupied: isOccupied,
+            horizontalWin: horizontalWin,
             gameFull: gameFull,
             processEvents: processEvents
         }

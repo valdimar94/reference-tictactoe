@@ -55,6 +55,28 @@ module.exports = function(injected){
                             }]);
                             return;
                         }
+                        if(gameState.isOccupied(cmd.placeAt)){
+                            eventHandler( [{
+                                gameId: cmd.gameId,
+                                type: "IllegalMoveIsOccupied",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side
+                            }]);
+                            return;
+                        }
+                        if(gameState.horizontalWin(cmd)){
+                            eventHandler( [{
+                                gameId: cmd.gameId,
+                                type: "GameWon",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side
+                            }]);
+                            return;
+                        }
                         eventHandler([{
                             gameId: cmd.gameId,
                             type: "MovePlaced",

@@ -54,6 +54,41 @@ module.exports=function(injected){
                 return me;
 
             },
+            createGame:()=>{
+                var gmId = generateUUID();
+                //var gmId = 0;
+                var cmdId = commandId++;
+                routingContext.commandRouter.routeMessage({gameId:gmId, type:"CreateGame", commandId:cmdId})
+                return me;
+            },
+            expectGameCreated:()=>{
+                waitingFor.push("expectGameCreated");
+                routingContext.eventRouter.on('GameCreated', function(game){
+                    waitingFor.pop();
+                });
+                return me;
+            },
+            gameJoined:()=>{
+                return me;
+            },
+            expectGameJoined:()=>{
+                return me;
+            },
+            joinGame:()=>{
+                return me;
+            },
+            getGame:()=>{
+                return me;
+            },
+            placeMove:()=>{
+                return me;
+            },
+            expectMoveMade:()=>{
+                return me;
+            },
+            expectGameWon:()=>{
+                return me;
+            },
             then:(whenDoneWaiting)=>{
                 function waitLonger(){
                     if(waitingFor.length>0){

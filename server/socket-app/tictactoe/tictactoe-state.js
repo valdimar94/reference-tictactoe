@@ -30,9 +30,10 @@ module.exports = function (injected) {
         function togglePlayer() {
             if (playerTurn == 'X'){
                 playerTurn = 'O';
-                return;
             }
-            playerTurn = 'X';
+            else {
+                playerTurn = 'X';
+            }
         }
         // If any of the three win conditions are met, this function returns true
         function winConditions(event) {

@@ -12,7 +12,7 @@ module.exports = function (injected) {
             if (event.type=="GameJoined"){
                 isFull = true;
             }
-            if (event.type=="PlaceMove"){
+            if (event.type=="MovePlaced"){
                 board[event.placeAt] = event.side;
                 togglePlayer();
             }
@@ -43,7 +43,7 @@ module.exports = function (injected) {
         function horizontalWin(event) {
 
             for (var i = 0; i < board.length; i+=3){
-                if (board[i] == playerTurn && board[i+1] == playerTurn && board[i+2] == playerTurn){
+                if (board[i] == event.side && board[i+1] == event.side && board[i+2] == event.side){
                     return true;
                 }
             }
@@ -52,10 +52,10 @@ module.exports = function (injected) {
 
         function diagonalWin(event) {
 
-            if (board[0] == playerTurn && board[4] == playerTurn && board[8] == playerTurn){
+            if (board[0] == event.side && board[4] == event.side && board[8] == event.side){
                 return true;
             }
-            if (board[2] == playerTurn && board[4] == playerTurn && board[6] == playerTurn){
+            if (board[2] == event.side && board[4] == event.side && board[6] == event.side){
                 return true;
             }
             return false;
@@ -64,7 +64,7 @@ module.exports = function (injected) {
         function verticalWin(event){
 
             for (var i = 0; i < board.length-6; i++){
-                if (board[i] == playerTurn && board[i+3] == playerTurn && board[i+6] == playerTurn){
+                if (board[i] == event.side && board[i+3] == event.side && board[i+6] == event.side){
                     return true;
                 }
             }
@@ -86,10 +86,10 @@ module.exports = function (injected) {
         }
 
         function isCurrentPlayerTurn(side) {
-            if (side == playerTurn){
-                return true;
+            if (side != playerTurn){
+                return false;
             }
-            return false;
+            return true;
         }
 
         processEvents(history);

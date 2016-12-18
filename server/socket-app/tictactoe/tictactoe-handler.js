@@ -93,16 +93,14 @@ module.exports = function(injected){
                                 timeStamp: cmd.timeStamp,
                                 side: cmd.side
                             });
-                            return;
                         }
-                        if(gameState.isDraw(cmd)){
+                        else if(gameState.isDraw(cmd)){
                             event.push({
                                 gameId: cmd.gameId,
                                 type: "GameDraw",
                                 name: cmd.name,
                                 timeStamp: cmd.timeStamp
                             });
-                            return;
                         }
                         eventHandler(event);
                     }

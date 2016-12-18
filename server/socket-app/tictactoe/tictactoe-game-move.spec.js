@@ -92,7 +92,7 @@ describe("move game command", function() {
           side:"O"
       },
       {
-          type: "PlaceMove",
+          type: "MovePlaced",
           user: {
               userName: "TheDude"
           },
@@ -150,7 +150,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -206,7 +206,7 @@ describe("move game command", function() {
           side:"O"
       },
       {
-          type: "PlaceMove",
+          type: "MovePlaced",
           user: {
               userName: "TheDude"
           },
@@ -262,7 +262,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -272,7 +272,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -282,7 +282,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -292,7 +292,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -314,6 +314,16 @@ describe("move game command", function() {
             side:"X"
         };
         then = [
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:31:29",
+            placeAt: "2",
+            side:"X"
+        },
         {
             type: "GameWon",
             user: {
@@ -347,7 +357,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -357,7 +367,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -367,7 +377,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -377,7 +387,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -399,6 +409,16 @@ describe("move game command", function() {
             side:"X"
         };
         then = [
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:31:29",
+            placeAt: "8",
+            side:"X"
+        },
         {
             type: "GameWon",
             user: {
@@ -432,7 +452,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -442,7 +462,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -452,7 +472,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -462,7 +482,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -484,6 +504,16 @@ describe("move game command", function() {
             side:"X"
         };
         then = [
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:31:29",
+            placeAt: "6",
+            side:"X"
+        },
         {
             type: "GameWon",
             user: {
@@ -517,7 +547,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -527,7 +557,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -537,7 +567,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -547,7 +577,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -557,7 +587,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -567,7 +597,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -577,7 +607,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -587,7 +617,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -609,6 +639,16 @@ describe("move game command", function() {
             side:"X"
         };
         then = [
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:31:29",
+            placeAt: "3",
+            side:"X"
+        },
         {
             type: "GameDraw",
             name: "TheFirstGame",
@@ -639,7 +679,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -649,7 +689,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -659,7 +699,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -669,7 +709,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -679,7 +719,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -689,7 +729,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -699,7 +739,7 @@ describe("move game command", function() {
             side:"O"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "TheDude"
             },
@@ -709,7 +749,7 @@ describe("move game command", function() {
             side:"X"
         },
         {
-            type: "PlaceMove",
+            type: "MovePlaced",
             user: {
                 userName: "NotTheDude"
             },
@@ -731,6 +771,16 @@ describe("move game command", function() {
             side:"X"
         };
         then = [
+        {
+            type: "MovePlaced",
+            user: {
+                userName: "TheDude"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:31:29",
+            placeAt: "0",
+            side:"X"
+        },
         {
             type: "GameWon",
             user: {

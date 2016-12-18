@@ -68,15 +68,26 @@ Do you have the following Jobs and what happens in each Job:
 
 - __Commit Stage__
 * yes, it's called references-tictactoe. This job waits for a git commit to the main repo via webhook, runs the advserverpack.sh which builds the docker image. This stage also runs unit tests. If everything is successful, it triggers the next step which is tictactoe deploy.
+* Jenkins runs:
+./scripts/advserverpack.sh
+./scripts/junitResults.sh
 
 - __Acceptance Stage__
 * yes, it's called tictactoe acceptance test. This job waits for tictactoe deploy to finish successfully and runs acceptance tests(api test), but only after running dependancyChange.sh to have a fresh install of npm.
+* Jenkins runs:
+./scripts/dependancyChange.sh
+npm run apitest
 
 - __Capacity Stage__
 * After the acceptance stage has finished successfully, the capacity stage is run, called tictactoe loadtest. Here load tests are run utilizing the same api tests but in mass. Here some problems began. The Advania ubuntu server is quite unreliable. Sometimes the loadtest for playing the game took about 14 sec, but times have rached upwards of 80 sec, making it hard to predict accurate time.
+* Jenkins runs:
+./scripts/dependancyChange.sh
+npm run loadtest
 
 - __Other__
 * the stage after the commit stage is the deploy stage, called tictactoe deploy. This job is only triggered if the commit stage was successful. Here it contacts the AWS server and runs a script deploying the image to a public ip address.
+* Jenkins runs:
+ssh -o StrictHostKeyChecking=no -i "../admin-key-pair-ireland.pem" ec2-user@54.171.205.207 "sleep 2 && ./docker-compose-and-run.sh"
 
 
 

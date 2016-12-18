@@ -12,6 +12,7 @@ myschool skil
 Outline what script files you created and the purpose of each file. Each file should be commented. This could be
 
 - __Docker build__
+* _advserverpack.sh_ - is run from Jenkins. installs npm and runs pack.sh.
 * _start.sh_ - is run from Dockerfile. Has the db migration and runs run.js
 * _pack.sh_ - main build file. Copies everything that is needed to build the image to build folder. Creates the docker image and pushes to docker hub. Utilizes Dockerfile and start.sh.
 
@@ -91,7 +92,7 @@ __Did you use any of the following features in Jenkins?__
 * no
 
 - __Test reports__
-* no
+* Yes, all .xml files from unit tests are deployed to junitResults directory and are displayed on Jenkins where every test can be viewed and see if any failed.
 
 - __Other__
 * no

@@ -58,6 +58,7 @@ Outline what tests you created.
 Did you create a data migration.
 
 - Migration up and down
+* Yes, Dockerfile runs a script called start.sh that runs the data migration
 
 
 

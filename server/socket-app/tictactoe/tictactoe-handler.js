@@ -72,27 +72,8 @@ module.exports = function(injected){
                             }]);
                             return;
                         }
-                        if(gameState.winConditions(cmd)){
-                            eventHandler( [{
-                                gameId: cmd.gameId,
-                                type: "GameWon",
-                                user: cmd.user,
-                                name: cmd.name,
-                                timeStamp: cmd.timeStamp,
-                                side: cmd.side
-                            }]);
-                            return;
-                        }
-                        if(gameState.isDraw(cmd)){
-                            eventHandler( [{
-                                gameId: cmd.gameId,
-                                type: "GameDraw",
-                                name: cmd.name,
-                                timeStamp: cmd.timeStamp
-                            }]);
-                            return;
-                        }
-                        eventHandler([{
+
+                        var event = [{
                             gameId: cmd.gameId,
                             type: "MovePlaced",
                             user: cmd.user,
@@ -100,7 +81,30 @@ module.exports = function(injected){
                             timeStamp: cmd.timeStamp,
                             placeAt: cmd.placeAt,
                             side: cmd.side
-                        }]);
+                        }];
+                        gameState.processEvents(event);
+
+                        if(gameState.winConditions(cmd)){
+                            event.push({
+                                gameId: cmd.gameId,
+                                type: "GameWon",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side
+                            });
+                            return;
+                        }
+                        if(gameState.isDraw(cmd)){
+                            event.push({
+                                gameId: cmd.gameId,
+                                type: "GameDraw",
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp
+                            });
+                            return;
+                        }
+                        eventHandler(event);
                     }
                 };
 

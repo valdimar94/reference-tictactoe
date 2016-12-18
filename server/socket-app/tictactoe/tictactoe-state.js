@@ -41,7 +41,6 @@ module.exports = function (injected) {
         }
 
         function horizontalWin(event) {
-            board[event.placeAt] = event.side;
 
             for (var i = 0; i < board.length; i+=3){
                 if (board[i] == playerTurn && board[i+1] == playerTurn && board[i+2] == playerTurn){
@@ -52,7 +51,6 @@ module.exports = function (injected) {
         }
 
         function diagonalWin(event) {
-            board[event.placeAt] = event.side;
 
             if (board[0] == playerTurn && board[4] == playerTurn && board[8] == playerTurn){
                 return true;
@@ -64,7 +62,6 @@ module.exports = function (injected) {
         }
 
         function verticalWin(event){
-            board[event.placeAt] = event.side;
 
             for (var i = 0; i < board.length-6; i++){
                 if (board[i] == playerTurn && board[i+3] == playerTurn && board[i+6] == playerTurn){
@@ -75,7 +72,6 @@ module.exports = function (injected) {
         }
         // If any place in the board is null, it cannot be a draw
         function isDraw(event){
-            board[event.placeAt] = event.side;
 
             for (var i = 0; i < board.length; i++){
                 if (board[i] == null){

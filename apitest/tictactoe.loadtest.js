@@ -27,7 +27,7 @@ describe('User tictactoe game loadtest', function(){
     });
 
     const count = 100;
-    const timelimit = 30000;
+    const timelimit = 40000;
 
     it('should play ' + count + ' games of tictactoe within '+ timelimit +'ms',function(done){
 

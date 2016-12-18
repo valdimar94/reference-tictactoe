@@ -27,7 +27,7 @@ describe('User tictactoe game loadtest', function(){
     });
 
     const count = 100;
-    const timelimit = 100000;
+    const timelimit = 30000;
 
     it('should play ' + count + ' games of tictactoe within '+ timelimit +'ms',function(done){
 
@@ -79,6 +79,7 @@ describe('User tictactoe game loadtest', function(){
 
                                             var endMillis = new Date().getTime();
                                             var duration = endMillis - startMillis;
+                                            console.log(duration);
                                             if(duration > timelimit){
                                                 done.fail(duration + " exceeds limit " + timelimit);
                                             } else {

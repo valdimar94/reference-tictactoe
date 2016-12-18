@@ -8,6 +8,6 @@ set -e
 
 sleep 10 # this needs to be removed in future version!
 npm run migratedb # so the server updates between other browsers on localhost
-node run.js
+node run.js # use node to run run.js
 
 exit 0

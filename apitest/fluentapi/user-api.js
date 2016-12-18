@@ -64,7 +64,6 @@ module.exports=function(injected){
             },
             expectGameCreated:()=>{
                 waitingFor.push("expectGameCreated");
-                console.log("expectGameCreated")
                 routingContext.eventRouter.on('GameCreated', function(){
                     waitingFor.pop();
                 });
@@ -73,7 +72,6 @@ module.exports=function(injected){
 
             expectGameJoined:()=>{
                 waitingFor.push("expectGameJoined");
-                console.log("expectgamejoined")
                 routingContext.eventRouter.on('GameJoined', function(){
                     waitingFor.pop();
                 });
@@ -83,25 +81,20 @@ module.exports=function(injected){
                 var cmdId = generateUUID();
                 me.playerSide = "O";
                 me.gameId = gameId;
-                console.log("joingame")
                 routingContext.commandRouter.routeMessage({gameId:me.gameId, type:"JoinGame", commandId:cmdId});
                 return me;
             },
             getGame:()=>{
-              console.log("getgame")
                 return me;
             },
             placeMove:(row, col)=>{
                 var cord = row + col * 3;
-                console.log(cord)
                 var cmdId = generateUUID();
-                console.log(me.playerSide)
                 routingContext.commandRouter.routeMessage({gameId:me.gameId, type:"PlaceMove", commandId:cmdId, side:me.playerSide, placeAt:cord});
                 return me;
             },
             expectMoveMade:()=>{
                 waitingFor.push("expectMoveMade");
-                console.log("expectmovemade")
                 routingContext.eventRouter.on('MovePlaced', function(){
                     waitingFor.pop();
                 });
@@ -110,7 +103,6 @@ module.exports=function(injected){
             expectGameWon:()=>{
                 //missing implementation
                 waitingFor.push("expectGameWon");
-                console.log("expectGameWon")
                 routingContext.eventRouter.on('GameWon', function(){
                     waitingFor.pop();
                 });
